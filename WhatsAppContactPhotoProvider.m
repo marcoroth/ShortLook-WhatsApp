@@ -4,24 +4,30 @@
   -(NSString *)threadIdentifier;
 @end
 
-@implementation WhatsAppContactPhotoProvider
+@interface FBApplicationInfo
+  -(NSURL *)dataContainerURL;
+@end
 
-- (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(DDUserNotification *)notification {
+@interface LSApplicationProxy
+  +(id)applicationProxyForIdentifier:(id)arg1;
+@end
+
+@implementation WhatsAppContactPhotoProvider
+  - (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(DDUserNotification *)notification {
+    FBApplicationInfo *appinfo = [LSApplicationProxy applicationProxyForIdentifier:@"net.whatsapp.WhatsApp"];
     NCNotificationRequest *request = [notification request];
     NSString *threadId = [request threadIdentifier];
-    NSString *phonenumber = [threadId componentsSeparatedByString:@"@"][0];
+    NSString *phoneNumber = [threadId componentsSeparatedByString:@"@"][0];
+    NSMutableString *imageURL = [NSMutableString new];
+    NSString *containerURL = [[appinfo dataContainerURL] absoluteString];
 
-    NSMutableString *path = [NSMutableString new];
+    [imageURL appendString:containerURL];
+    [imageURL appendString:@"/Library/Caches/spotlight-profile-v2/"];
+    [imageURL appendString:phoneNumber];
+    [imageURL appendString:@"@s-whatsapp-net.png"];
 
-    [path appendString:@"/var/mobile/Containers/Data/Application/"];
-    [path appendString:@"9BA71641-253E-450C-AE43-10A51DD7BD4F"];
-    [path appendString: @"/Library/Caches/spotlight-profile-v2/"];
-    [path appendString:phonenumber];
-    [path appendString:@"@s-whatsapp-net.png"];
+    UIImage *image = [UIImage imageWithContentsOfFile:imageURL];
 
-    UIImage *image = [UIImage imageWithContentsOfFile:path];
-
-    return [NSClassFromString(@"DDNotificationContactPhotoPromiseOffer") offerInstantlyResolvingPromiseWithPhotoIdentifier:phonenumber image:image];
-}
-
+    return [NSClassFromString(@"DDNotificationContactPhotoPromiseOffer") offerInstantlyResolvingPromiseWithPhotoIdentifier:@"super-unique-identifier" image:image];
+  }
 @end
