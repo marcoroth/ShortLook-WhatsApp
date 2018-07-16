@@ -1,1 +1,1 @@
-# WhatsApp Contant Photo Provider for ShortLook
+# WhatsApp Contact Photo Provider for ShortLook
