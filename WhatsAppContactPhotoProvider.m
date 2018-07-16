@@ -25,6 +25,7 @@
     [imageURL appendString:@"/Library/Caches/spotlight-profile-v2/"];
     [imageURL appendString:phoneNumber];
     [imageURL appendString:@"@s-whatsapp-net.png"];
+    imageURL = [imageURL stringByReplacingOccurrencesOfString:@"file://" withString:@""];
 
     UIImage *image = [UIImage imageWithContentsOfFile:imageURL];
 
