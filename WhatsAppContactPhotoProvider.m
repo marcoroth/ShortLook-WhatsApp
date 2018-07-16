@@ -28,6 +28,6 @@
 
     UIImage *image = [UIImage imageWithContentsOfFile:imageURL];
 
-    return [NSClassFromString(@"DDNotificationContactPhotoPromiseOffer") offerInstantlyResolvingPromiseWithPhotoIdentifier:@"super-unique-identifier" image:image];
+    return [NSClassFromString(@"DDNotificationContactPhotoPromiseOffer") offerInstantlyResolvingPromiseWithPhotoIdentifier:imageURL image:image];
   }
 @end
