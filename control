@@ -1,4 +1,4 @@
-Package: ch.marco-roth.shortlook.plugin.contact-photo.whatsapp
+Package: ch.marcoroth.shortlook.plugin.contact-photo.whatsapp
 Name: WhatsApp Profile Pictures for ShortLook
 Depends: mobilesubstrate, co.dynastic.ios.tweak.shortlook
 Version: 1.1.1
