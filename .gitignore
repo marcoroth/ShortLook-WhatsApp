@@ -1,3 +1,4 @@
 # gitignore for Theos
 
 .DS_Store
+.theos
