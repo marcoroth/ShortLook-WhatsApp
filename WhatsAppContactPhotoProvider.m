@@ -10,7 +10,7 @@
     NCNotificationRequest *request = [notification request];
     NSString *threadId = [request threadIdentifier];
     NSString *chatId = [threadId componentsSeparatedByString:@"@"][0];
-    NSString* containerURL = [FolderFinder findSharedFolder:@"group.net.whatsapp.WhatsApp.shared"];
+    NSString* containerURL = [FolderFinder findSharedFolder:@"group.net.whatsapp.WhatsAppSMB.shared"];
     containerURL = [NSString stringWithFormat:@"%@/Media/Profile", containerURL];
 
     NSFileManager *fileManager = [[NSFileManager alloc] init];
