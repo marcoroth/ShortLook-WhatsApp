@@ -1,4 +1,4 @@
-Package: ch.marcoroth.shortlook.plugin.contact-photo.whatsappBuisness
+Package: ch.marcoroth.shortlook.plugin.contact-photo.whatsappbuisness
 Name: WhatsApp Buisness Profile Pictures for ShortLook
 Depends: mobilesubstrate, co.dynastic.ios.tweak.shortlook
 Version: 1.1.2
