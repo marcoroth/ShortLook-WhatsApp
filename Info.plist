@@ -7,8 +7,10 @@
     <key>DDNotificationExternalProviderClasses</key>
     <dict>
       <key>WhatsAppContactPhotoProvider</key>
-      <string>net.whatsapp.WhatsAppSMB</string>
-      <string>net.whatsapp.WhatsApp</string>
+      <array>
+         <string>net.whatsapp.WhatsAppSMB</string>
+         <string>net.whatsapp.WhatsApp</string>
+      </array>
     </dict>
     <key>DDNotificationExternalProviderAPIVersion</key>
     <integer>1</integer>
