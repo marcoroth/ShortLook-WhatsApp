@@ -8,6 +8,7 @@
     <dict>
       <key>WhatsAppContactPhotoProvider</key>
       <string>net.whatsapp.WhatsAppSMB</string>
+      <string>net.whatsapp.WhatsApp</string>
     </dict>
     <key>DDNotificationExternalProviderAPIVersion</key>
     <integer>1</integer>

@@ -1,9 +1,9 @@
-Package: ch.marcoroth.shortlook.plugin.contact-photo.whatsappbusiness
-Name: WhatsApp Business Profile Pictures for ShortLook
+Package: ch.marcoroth.shortlook.plugin.contact-photo.whatsapp
+Name: WhatsApp Profile Pictures for ShortLook
 Depends: mobilesubstrate, co.dynastic.ios.tweak.shortlook
-Version: 1.1.2
+Version: 1.1.3
 Architecture: iphoneos-arm
-Description: Show WhatsApp Business users' profile pictures in ShortLook when you receive a WhatsApp notification!
+Description: Show WhatsApp users' profile pictures in ShortLook when you receive a WhatsApp notification!
 Maintainer: Marco Roth, Charlie While
 Author: Marco Roth, Charlie While
 Section: Tweaks (ShortLook)
