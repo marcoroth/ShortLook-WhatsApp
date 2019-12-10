@@ -42,6 +42,7 @@
 
     return [NSClassFromString(@"DDNotificationContactPhotoPromiseOffer") offerInstantlyResolvingPromiseWithPhotoIdentifier:imageURL image:image];
   }
+@end
 
 @implementation WhatsAppBusinessContactPhotoProvider
   - (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(DDUserNotification *)notification {
