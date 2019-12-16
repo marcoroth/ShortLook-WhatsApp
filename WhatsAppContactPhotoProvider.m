@@ -10,36 +10,42 @@
     NCNotificationRequest *request = [notification request];
     NSString *threadId = [request threadIdentifier];
     NSString *chatId = [threadId componentsSeparatedByString:@"@"][0];
-    NSString* containerURL = [FolderFinder findSharedFolder:@"group.net.whatsapp.WhatsApp.shared"];
-    containerURL = [NSString stringWithFormat:@"%@/Media/Profile", containerURL];
-
     NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSDirectoryEnumerator *files = [fileManager enumeratorAtPath:containerURL];
+    NSArray *identifiers = @[@"group.net.whatsapp.WhatsApp.shared", @"group.net.whatsapp.WhatsAppSMB.shared"];
 
-    NSString *file;
-    NSString *profilePicture;
+    for (NSString *identifier in identifiers) {
+      NSString *file;
+      NSString *profilePicture;
+      NSString *containerPath = [FolderFinder findSharedFolder:identifier];
+      NSString *picturesPath = [NSString stringWithFormat:@"%@/Media/Profile", containerPath];
+      NSDirectoryEnumerator *files = [fileManager enumeratorAtPath:picturesPath];
 
-    while ((file = [files nextObject])) {
-      NSArray *parts = [file componentsSeparatedByString:@"-"];
+      while (file = [files nextObject]) {
+        NSArray *parts = [file componentsSeparatedByString:@"-"];
 
-      // DMs
-      if ([parts count] == 2){
-        if ([chatId isEqualToString:parts[0]]){
-          profilePicture = file;
+        // DMs
+        if ([parts count] == 2) {
+          if ([chatId isEqualToString:parts[0]]){
+            profilePicture = file;
+          }
         }
-      }
 
-      // Groups
-      if ([parts count] == 3){
-        if ([chatId isEqualToString:[NSString stringWithFormat:@"%@-%@", parts[0], parts[1]]]){
-          profilePicture = file;
+        // Groups
+        if ([parts count] == 3) {
+          if ([chatId isEqualToString:[NSString stringWithFormat:@"%@-%@", parts[0], parts[1]]]){
+            profilePicture = file;
+          }
+        }
+
+        if (profilePicture) {
+          NSString *imagePath = [NSString stringWithFormat:@"%@/%@", picturesPath, profilePicture];
+          UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+
+          return [NSClassFromString(@"DDNotificationContactPhotoPromiseOffer") offerInstantlyResolvingPromiseWithPhotoIdentifier:imagePath image:image];
         }
       }
     }
 
-    NSString *imageURL = [NSString stringWithFormat:@"%@/%@", containerURL, profilePicture];
-    UIImage *image = [UIImage imageWithContentsOfFile:imageURL];
-
-    return [NSClassFromString(@"DDNotificationContactPhotoPromiseOffer") offerInstantlyResolvingPromiseWithPhotoIdentifier:imageURL image:image];
+    return nil;
   }
 @end
